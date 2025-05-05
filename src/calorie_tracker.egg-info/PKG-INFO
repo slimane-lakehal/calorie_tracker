@@ -1,0 +1,320 @@
+Metadata-Version: 2.4
+Name: calorie_tracker
+Version: 0.1.0
+Summary: A comprehensive calorie and nutrition tracking application
+Home-page: https://github.com/yourusername/calorie_tracker
+Author: Your Name
+Author-email: Slimane Lakehal <lakehalslimane@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/slimane-lakehal/calorie_tracker
+Project-URL: Bug Tracker, https://github.com/slimane-lakehal/calorie_tracker/issues
+Project-URL: Source, https://github.com/slimane-lakehal/calorie_tracker
+Keywords: calorie,nutrition,health,fitness,tracking
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Health and Fitness
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: sqlalchemy>=2.0.0
+Requires-Dist: click>=8.0.0
+Requires-Dist: python-dotenv>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.12.0; extra == "dev"
+Requires-Dist: black>=21.5b2; extra == "dev"
+Requires-Dist: mypy>=0.812; extra == "dev"
+Provides-Extra: viz
+Requires-Dist: matplotlib>=3.5.0; extra == "viz"
+Requires-Dist: pandas>=1.3.0; extra == "viz"
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# Calorie Tracker
+
+A comprehensive Python application for tracking calorie intake, managing fitness goals, and receiving personalized meal suggestions. This application provides an intuitive interface for daily tracking while offering data-driven insights to help users achieve their weight and fitness goals.
+
+## Features
+
+- **User Profile Management**
+  - Store personal details (age, height, weight, activity level)
+  - Calculate BMR (Basal Metabolic Rate) and TDEE (Total Daily Energy Expenditure)
+  - Set weight goals (lose, maintain, gain) with target rates
+  - Track progress over time
+
+- **Calorie Intake Tracking**
+  - Daily food logging with a database of common foods
+  - Custom food entry with nutritional information
+  - Meal categorization (breakfast, lunch, dinner, snacks)
+  - Running totals of daily calories and macronutrients
+
+- **Data Analysis & Reporting**
+  - Weekly and monthly progress reports
+  - Weight change tracking
+  - Nutrition insights with macronutrient breakdowns
+  - Data export to CSV or JSON formats
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip (Python package installer)
+
+### Basic Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/calorie_tracker.git
+cd calorie_tracker
+
+# Create and activate a virtual environment (recommended)
+python -m venv .venv
+# On Windows:
+.\.venv\Scripts\activate
+# On macOS/Linux:
+source .venv/bin/activate
+
+# Install the package
+pip install -e .
+```
+
+### Installation with visualization features
+
+```bash
+pip install -e ".[viz]"
+```
+
+### Development installation
+
+```bash
+pip install -e ".[dev,viz]"
+```
+
+## Quick Start
+
+After installation, you can start using the calorie tracker from the command line:
+
+```bash
+# Create a user profile
+calorie-tracker user create
+
+# Add some food items to the database
+calorie-tracker food add
+
+# Log your meals
+calorie-tracker log meal
+
+# View your food logs for today
+calorie-tracker log list
+
+# See a summary of your nutrition over the past week
+calorie-tracker log summary
+
+# Log your weight
+calorie-tracker weight log
+
+# Generate a nutrition report with charts
+calorie-tracker export report
+```
+
+## Command Reference
+
+### User Management
+
+- `calorie-tracker user create` - Create a new user profile
+- `calorie-tracker user list` - List all user profiles
+- `calorie-tracker user info USERNAME` - Show detailed information for a specific user
+
+### Food Management
+
+- `calorie-tracker food add` - Add a new food item to the database
+- `calorie-tracker food list` - List food items in the database
+- `calorie-tracker food info FOOD_ID` - Show detailed information for a specific food
+
+### Food Logging
+
+- `calorie-tracker log meal` - Log a meal for a user
+- `calorie-tracker log list` - List food logs for a user on a specific date
+- `calorie-tracker log summary` - Show a summary of food logs over a period of days
+
+### Weight Tracking
+
+- `calorie-tracker weight log` - Log a weight measurement
+- `calorie-tracker weight history` - Show weight history for a user
+
+### Data Export
+
+- `calorie-tracker export logs` - Export food logs to CSV or JSON format
+- `calorie-tracker export report` - Generate a comprehensive progress report
+
+## Database
+
+By default, the application stores data in a SQLite database located at:
+
+- Windows: `C:\Users\<username>\.calorie_tracker\calorie_tracker.db`
+- macOS/Linux: `/home/<username>/.calorie_tracker/calorie_tracker.db`
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Example Workflow
+
+Here's a complete workflow example demonstrating the main features of the application:
+
+### 1. Create a User Profile
+
+```bash
+$ calorie-tracker user create --username john_doe --email john@example.com --first-name John --last-name Doe --birth-date 1990-01-15 --gender male --height-cm 180 --weight-kg 75 --activity-level moderate --weight-goal lose --target-weight-kg 70
+
+User 'john_doe' created successfully!
+Daily calorie goal set to 2380 calories
+```
+
+### 2. Add Food Items to the Database
+
+```bash
+$ calorie-tracker food add --name "Apple" --calories 52 --protein 0.3 --carbs 14 --fat 0.2 --serving-size 100 --description "Fresh apple" --category "Fruits"
+
+Food 'Apple' added successfully with ID: 1
+
+$ calorie-tracker food add --name "Chicken Breast" --calories 165 --protein 31 --carbs 0 --fat 3.6 --serving-size 100 --description "Boneless, skinless" --category "Protein"
+
+Food 'Chicken Breast' added successfully with ID: 2
+```
+
+### 3. Log Meals
+
+```bash
+$ calorie-tracker log meal --username john_doe --food-id 1 --serving-size 150 --meal-type breakfast --notes "Morning apple"
+
+Meal logged successfully!
+Food: Apple
+Serving: 150.0g
+Calories: 78
+Protein: 0.5g
+Carbs: 21.0g
+Fat: 0.3g
+
+$ calorie-tracker log meal --username john_doe --food-id 2 --serving-size 200 --meal-type lunch --notes "Post-workout"
+
+Meal logged successfully!
+Food: Chicken Breast
+Serving: 200.0g
+Calories: 330
+Protein: 62.0g
+Carbs: 0.0g
+Fat: 7.2g
+```
+
+### 4. View Food Logs
+
+```bash
+$ calorie-tracker log list --username john_doe
+
+Food Logs for john_doe on 2025-05-05:
+------------------------------------------------------------------------------------------
+
+BREAKFAST:
+Food                           | Serving    | Calories | Protein |   Carbs |     Fat
+------------------------------------------------------------------------------------------
+Apple                          |      150.0g |       78 |     0.5g |    21.0g |     0.3g
+
+LUNCH:
+Food                           | Serving    | Calories | Protein |   Carbs |     Fat
+------------------------------------------------------------------------------------------
+Chicken Breast                 |      200.0g |      330 |    62.0g |     0.0g |     7.2g
+
+DAILY TOTALS:
+------------------------------------------------------------------------------------------
+Total                          |            |      408 |    62.5g |    21.0g |     7.5g
+------------------------------------------------------------------------------------------
+
+Calorie Goal: 2380
+Calories Consumed: 408 (17.1%)
+Remaining: 1972 calories
+```
+
+### 5. Track Weight
+
+```bash
+$ calorie-tracker weight log --username john_doe --weight-kg 74.8 --notes "Morning weight"
+
+Weight (74.8 kg) logged successfully for john_doe
+
+$ calorie-tracker weight log --username john_doe --weight-kg 74.5 --date 2025-05-07 --notes "After two days of diet"
+
+Weight (74.5 kg) logged successfully for john_doe
+Lost 0.3 kg since previous measurement on 2025-05-05.
+```
+
+### 6. View Weight History
+
+```bash
+$ calorie-tracker weight history --username john_doe
+
+Weight History for john_doe:
+------------------------------------------------------------
+Date         | Weight (kg) | Change     | Notes
+------------------------------------------------------------
+2025-05-07   | 74.5       | -0.3 kg    | After two days of diet
+2025-05-05   | 74.8       |            | Morning weight
+------------------------------------------------------------
+Overall loss: 0.3 kg over this period.
+```
+
+### 7. Generate Reports
+
+```bash
+$ calorie-tracker log summary --username john_doe --days 7
+
+Food Log Summary for john_doe - Last 7 Days:
+----------------------------------------------------------------------------------------------------
+
+SUMMARY STATISTICS:
+----------------------------------------------------------------------------------------------------
+Days with logs: 1 out of 7
+Average daily calories: 408
+Daily calorie goal: 2380
+Average goal achievement: 17.1%
+
+Average Macronutrient Breakdown:
+Protein: 62.5g (61.3% of calories)
+Carbs: 21.0g (20.6% of calories)
+Fat: 7.5g (16.5% of calories)
+```
+
+```bash
+$ calorie-tracker export report --username john_doe --days 30 --include-charts
+
+Report successfully generated: C:\Users\<username>\Documents\calorie_tracker_report_john_doe_20250505_123456.html
+```
+
+The generated HTML report includes:
+
+- Daily calorie tracking charts
+- Macronutrient distribution visualization
+- Weight progression graphs 
+- Personalized nutritional recommendations
+- Detailed food log history
+
+### 8. Export Data
+
+```bash
+$ calorie-tracker export logs --username john_doe --format csv
+
+Exported 2 food logs to CSV: C:\Users\<username>\Documents\calorie_tracker_john_doe_20250505_123456.csv
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+

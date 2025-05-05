@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calorie_tracker"
+version = "0.1.0"
+description = "A comprehensive calorie and nutrition tracking application"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+keywords = ["calorie", "nutrition", "health", "fitness", "tracking"]
+authors = [
+    {name = "Slimane Lakehal", email = "lakehalslimane@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Health and Fitness",
+]
+dependencies = [
+    "sqlalchemy>=2.0.0",
+    "click>=8.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0.0",
+    "pytest-cov>=2.12.0",
+    "black>=21.5b2",
+    "mypy>=0.812",
+]
+viz = [
+    "matplotlib>=3.5.0",
+    "pandas>=1.3.0",
+]
+
+[project.scripts]
+calorie-tracker = "calorie_tracker.cli.main:cli"
+
+[project.urls]
+"Homepage" = "https://github.com/slimane-lakehal/calorie_tracker"
+"Bug Tracker" = "https://github.com/slimane-lakehal/calorie_tracker/issues"
+"Source" = "https://github.com/slimane-lakehal/calorie_tracker"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+include = '\.pyi?$'
+
