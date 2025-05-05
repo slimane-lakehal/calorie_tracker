@@ -33,7 +33,7 @@ A comprehensive Python application for tracking calorie intake, managing fitness
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/calorie_tracker.git
+git clone https://github.com/slimane-lakehal/calorie_tracker.git
 cd calorie_tracker
 
 # Create and activate a virtual environment (recommended)
