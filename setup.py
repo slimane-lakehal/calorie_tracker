@@ -28,9 +28,9 @@ setup(
     name="calorie_tracker",
     version="0.1.0",
     description="A comprehensive calorie and nutrition tracking application",
-    author="Your Name",
-    author_email="your.email@example.com",
-    url="https://github.com/yourusername/calorie_tracker",
+    author="Slimane Lakehal",
+    author_email="lakehalslimane.com",
+    url="https://github.com/slimane-lakehal/calorie_tracker",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     python_requires=">=3.8",
@@ -55,8 +55,8 @@ setup(
     ],
     keywords="calorie, nutrition, health, fitness, tracking",
     project_urls={
-        "Bug Reports": "https://github.com/yourusername/calorie_tracker/issues",
-        "Source": "https://github.com/yourusername/calorie_tracker",
+        "Bug Reports": "https://github.com/slimane-lakehal/calorie_tracker/issues",
+        "Source": "https://github.com/slimane-lakehal/calorie_tracker",
     },
 )
 
